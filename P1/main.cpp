@@ -1,4 +1,4 @@
-// CS3113 Project 1 - Simple 2D scene
+// CS3113 Project 1 - Simple 2D Scene
 
 #define GL_SILENCE_DEPRECATION
 
