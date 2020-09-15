@@ -77,7 +77,7 @@ void Initialize() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Good setting for transparency
     ctgTextureID = LoadTexture("ctgNoArm.png");
-    armTextureID = LoadTexture("ctgArm.png");
+    armTextureID = LoadTexture("arm.png");
     OudTextureID = LoadTexture("Oud.png");
 }
 
@@ -106,15 +106,15 @@ void Update() {
 
     if (ctg_x < 3) { // Walk to the oud
         ctgMatrix = glm::translate(ctgMatrix, glm::vec3(ctg_x, 0.0f, 0.0f));
-        armMatrix = glm::translate(ctgMatrix, glm::vec3(0.1f, 0.0f, 0.0f));
+        armMatrix = glm::translate(ctgMatrix, glm::vec3(0.2f, 0.2f, 0.0f));
     }
-    else { // It reached the oud. Time to jam out.
+    else { // You reached the oud. Time to jam out.
         ctgMatrix = glm::translate(ctgMatrix, glm::vec3(3.0f, 0.0f, 0.0f));
-        armMatrix = glm::translate(ctgMatrix, glm::vec3(0.1f, 0.0f, 0.0f));
+        armMatrix = glm::translate(ctgMatrix, glm::vec3(0.2f, 0.2f, 0.0f));
         armMatrix = glm::rotate(armMatrix, glm::radians(arm_rotate), glm::vec3(0.0f, 0.0f, 1.0f));
     }
     OudMatrix = glm::scale(OudMatrix, glm::vec3(2.0f, 2.0f, 1.0f));
-    armMatrix = glm::scale(armMatrix, glm::vec3(2.0f, 2.0f, 1.0f));
+    armMatrix = glm::scale(armMatrix, glm::vec3(1.3f, 1.3f, 1.0f));
     ctgMatrix = glm::scale(ctgMatrix, glm::vec3(2.0f, 2.0f, 1.0f));
 }
 
