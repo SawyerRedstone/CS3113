@@ -25,7 +25,7 @@ ShaderProgram program;
 glm::mat4 viewMatrix, ctgMatrix, armMatrix, OudMatrix, projectionMatrix;
 Mix_Music* music;
 
-float arm_x = 0;
+float ctg_x = 0;
 float arm_rotate = 0;
 
 GLuint ctgTextureID;
@@ -96,21 +96,22 @@ void Update() {
     float ticks = (float)SDL_GetTicks() / 1000.0f;
     float deltaTime = ticks - lastTicks;
     lastTicks = ticks;
-    arm_x += 1.0f * deltaTime;
+    ctg_x += 1.0f * deltaTime;
     arm_rotate -= 90.0f * deltaTime;
     ctgMatrix = glm::mat4(1.0f);
     armMatrix = glm::mat4(1.0f);
     OudMatrix = glm::mat4(1.0f);
     OudMatrix = glm::translate(OudMatrix, glm::vec3(3.0f, 0.0f, 0.0f));
 
-    if (arm_x >= 3) {
-        ctgMatrix = glm::translate(ctgMatrix, glm::vec3(3.0f, 0.0f, 0.0f));
-        armMatrix = glm::translate(armMatrix, glm::vec3(3.0f, 0.0f, 0.0f));
-        armMatrix = glm::rotate(armMatrix, glm::radians(arm_rotate), glm::vec3(0.0f, 0.0f, 1.0f));
+
+    if (ctg_x < 3) { // Walk to the oud
+        ctgMatrix = glm::translate(ctgMatrix, glm::vec3(ctg_x, 0.0f, 0.0f));
+        armMatrix = glm::translate(ctgMatrix, glm::vec3(0.1f, 0.0f, 0.0f));
     }
-    else {
-        ctgMatrix = glm::translate(ctgMatrix, glm::vec3(arm_x, 0.0f, 0.0f));
-        armMatrix = glm::translate(armMatrix, glm::vec3(arm_x, 0.0f, 0.0f));
+    else { // It reached the oud. Time to jam out.
+        ctgMatrix = glm::translate(ctgMatrix, glm::vec3(3.0f, 0.0f, 0.0f));
+        armMatrix = glm::translate(ctgMatrix, glm::vec3(0.1f, 0.0f, 0.0f));
+        armMatrix = glm::rotate(armMatrix, glm::radians(arm_rotate), glm::vec3(0.0f, 0.0f, 1.0f));
     }
     OudMatrix = glm::scale(OudMatrix, glm::vec3(2.0f, 2.0f, 1.0f));
     armMatrix = glm::scale(armMatrix, glm::vec3(2.0f, 2.0f, 1.0f));
