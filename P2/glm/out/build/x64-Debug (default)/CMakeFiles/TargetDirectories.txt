@@ -1,0 +1,2 @@
+C:/Users/Sawye/source/repos/CS3113/P1/SDLProject/glm/out/build/x64-Debug (default)/CMakeFiles/edit_cache.dir
+C:/Users/Sawye/source/repos/CS3113/P1/SDLProject/glm/out/build/x64-Debug (default)/CMakeFiles/rebuild_cache.dir
