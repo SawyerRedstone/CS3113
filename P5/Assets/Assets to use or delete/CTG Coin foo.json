@@ -1,0 +1,14 @@
+{ "columns":3,
+ "image":"..\/Dropbox\/~Personal Finance\/School & Camp\/NYU\/NYU Fall 2020\/CS3113\/Platformer Game\/Assets\/CTG Coin.png",
+ "imageheight":112,
+ "imagewidth":112,
+ "margin":0,
+ "name":"CTG Coin",
+ "spacing":0,
+ "tilecount":9,
+ "tiledversion":"1.4.1",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":1.4
+}

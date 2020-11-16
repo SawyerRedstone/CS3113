@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="14" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
+ <editorsettings>
+  <export target="MenuMap.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" source="Jungle_terrain.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="14" height="8">
+  <data>
+   <tile gid="77"/>
+   <tile gid="78"/>
+   <tile gid="79"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="241"/>
+   <tile gid="242"/>
+   <tile gid="242"/>
+   <tile gid="242"/>
+   <tile gid="242"/>
+   <tile gid="243"/>
+   <tile/>
+   <tile gid="105"/>
+   <tile gid="106"/>
+   <tile gid="107"/>
+   <tile gid="77"/>
+   <tile gid="78"/>
+   <tile gid="79"/>
+   <tile/>
+   <tile gid="214"/>
+   <tile gid="326"/>
+   <tile gid="242"/>
+   <tile gid="242"/>
+   <tile gid="327"/>
+   <tile/>
+   <tile/>
+   <tile gid="133"/>
+   <tile gid="134"/>
+   <tile gid="135"/>
+   <tile gid="105"/>
+   <tile gid="106"/>
+   <tile gid="107"/>
+   <tile gid="241"/>
+   <tile gid="242"/>
+   <tile gid="243"/>
+   <tile gid="190"/>
+   <tile gid="191"/>
+   <tile gid="333"/>
+   <tile gid="334"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="133"/>
+   <tile gid="134"/>
+   <tile gid="135"/>
+   <tile/>
+   <tile gid="272"/>
+   <tile gid="217"/>
+   <tile gid="218"/>
+   <tile gid="219"/>
+   <tile gid="222"/>
+   <tile/>
+   <tile/>
+   <tile gid="299"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="246"/>
+   <tile gid="247"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="242"/>
+   <tile gid="299"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="274"/>
+   <tile gid="275"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="242"/>
+   <tile gid="327"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="330"/>
+   <tile gid="331"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="29"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="30"/>
+   <tile gid="31"/>
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,40 @@
+{ "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"MenuMap.json"
+        }
+    },
+ "height":8,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[77, 78, 79, 0, 0, 0, 0, 241, 242, 242, 242, 242, 243, 0, 105, 106, 107, 77, 78, 79, 0, 214, 326, 242, 242, 327, 0, 0, 133, 134, 135, 105, 106, 107, 241, 242, 243, 190, 191, 333, 334, 0, 0, 0, 0, 133, 134, 135, 0, 272, 217, 218, 219, 222, 0, 0, 299, 0, 0, 0, 0, 0, 0, 0, 0, 246, 247, 0, 0, 0, 242, 299, 0, 0, 0, 0, 0, 0, 0, 274, 275, 0, 0, 0, 242, 327, 0, 0, 0, 0, 0, 0, 0, 330, 331, 0, 0, 0, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31],
+         "height":8,
+         "id":1,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":14,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":2,
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.4.1",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"Jungle_terrain.tsx"
+        }],
+ "tilewidth":32,
+ "type":"map",
+ "version":1.4,
+ "width":14
+}

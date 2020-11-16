@@ -1,0 +1,14 @@
+{ "columns":61,
+ "image":"..\/Dropbox\/~Personal Finance\/School & Camp\/NYU\/NYU Fall 2020\/CS3113\/Platformer Game\/Assets\/CoinSpin.png",
+ "imageheight":1488,
+ "imagewidth":1976,
+ "margin":0,
+ "name":"CoinSpin",
+ "spacing":0,
+ "tilecount":2806,
+ "tiledversion":"1.4.1",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":1.4
+}

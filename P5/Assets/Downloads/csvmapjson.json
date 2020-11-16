@@ -1,0 +1,40 @@
+{ "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"csv",
+         "target":"csvmapfoo.csv"
+        }
+    },
+ "height":8,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 16, 0, 0, 0, 0, 7, 8, 0, 0, 0, 0, 0, 0, 15, 16, 0, 0, 0, 0, 15, 16, 0, 0, 0, 0, 0, 0, 15, 16, 0, 7, 8, 7, 8, 8, 7, 8, 7, 7, 8, 0, 15, 16, 0, 15, 16, 15, 16, 16, 15, 16, 15, 15, 16, 0, 15, 16, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 0],
+         "height":8,
+         "id":1,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":14,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":2,
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.4.1",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"tilesetfoo.tsx"
+        }],
+ "tilewidth":32,
+ "type":"map",
+ "version":1.4,
+ "width":14
+}
