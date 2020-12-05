@@ -169,7 +169,7 @@ void Render() {
 
     program.SetProjectionMatrix(uiProjectionMatrix);
     program.SetViewMatrix(uiViewMatrix);
-
+    
     Util::DrawText(&program, fontTextureID, "Lives: 3", 0.5, -0.3f, glm::vec3(-6, 3.2, 0));
 
     for (int i = 0; i < 3; i++) {

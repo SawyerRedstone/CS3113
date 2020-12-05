@@ -26,6 +26,8 @@ public:
     glm::vec3 acceleration;
     glm::vec3 rotation;
     glm::vec3 scale;
+    bool isActive = true;
+    int lives = 3;
 
     // For bullets
     glm::vec3 trajectory;
@@ -45,7 +47,7 @@ public:
     Entity();
     
     bool CheckCollision(Entity* other);
-    void Update(float deltaTime, Entity* player, std::vector<Entity*> objects);
+    void Update(float deltaTime, Entity* player, std::vector<Entity*> objects, std::vector<Entity*> bullets);
     void Render(ShaderProgram *program);
     void DrawBillboard(ShaderProgram* program);
 };

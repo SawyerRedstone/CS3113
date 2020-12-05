@@ -28,7 +28,7 @@ bool Entity::CheckCollision(Entity* other) {
     return false;
 }
 
-void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*> objects) {
+void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*> objects, std::vector<Entity*> bullets) {
     glm::vec3 previousPosition = position;
 
     if (billboard) {
@@ -40,8 +40,8 @@ void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*> object
         //velocity.x = sin(glm::radians(rotation.y)) * -1.0f;
     }
     if (entityType == BULLET) {
-        velocity.z = cos(glm::radians(trajectory.y)) * 1.0f;
-        velocity.x = sin(glm::radians(trajectory.y)) * 1.0f;
+        velocity.z = cos(glm::radians(trajectory.y)) * -1.0f;
+        velocity.x = sin(glm::radians(trajectory.y)) * -1.0f;
     }
 
     velocity += acceleration * deltaTime;
@@ -58,6 +58,22 @@ void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*> object
             }
         }
     }
+    if (entityType == ENEMY) {
+        velocity.z = cos(glm::radians(rotation.y)) * -1.0f;
+        velocity.x = sin(glm::radians(rotation.y)) * -1.0f;
+        for (Entity* bullet : bullets) {
+            if (CheckCollision(bullet)) {
+                isActive = false;
+            }
+        }
+        if (CheckCollision(player)) {
+            player->lives -= 1;
+            isActive = false;
+        }
+    }
+    //if (entityType == PLAYER) {
+    //    for (en)
+    //}
     
     if (entityType == CUBE) { 
         rotation.y += 45 * deltaTime;

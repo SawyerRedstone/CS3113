@@ -65,16 +65,18 @@ void Level1::Update(float deltaTime) {
 
     }
 
-    state.player->Update(deltaTime, state.player, state.objects);
+    state.player->Update(deltaTime, state.player, state.objects, state.bullets);
     for (Entity* object: state.objects) {
-        object->Update(deltaTime, state.player, state.objects);
+        object->Update(deltaTime, state.player, state.objects, state.bullets);
     }
 
     for (Entity* enemy: state.enemies) {
-        enemy->Update(deltaTime, state.player, state.objects);
+        if (enemy->isActive) {
+            enemy->Update(deltaTime, state.player, state.objects, state.bullets);
+        }
     }
     for (Entity* bullet : state.bullets) {
-        bullet->Update(deltaTime, state.player, state.objects);
+        bullet->Update(deltaTime, state.player, state.objects, state.bullets);
     }
 }
 

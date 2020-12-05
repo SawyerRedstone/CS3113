@@ -25,6 +25,7 @@ struct GameState {
     bool shooting = false;
     std::vector<Entity*> coins;
     Mix_Music* music;
+    //int lives = 3;
     int nextScene = -1; //default value for no scene change
 };
 
