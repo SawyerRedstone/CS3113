@@ -13,8 +13,9 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "ShaderProgram.h"
 #include "Mesh.h"
+#include <vector>
 
-enum EntityType { PLAYER, PLATFORM, ENEMY, CUBE, SHIP, FLOOR, CRATE };
+enum EntityType { PLAYER, ENEMY, CUBE, FLOOR, CRATE, BULLET };
 
 class Entity {
 public:
@@ -25,6 +26,9 @@ public:
     glm::vec3 acceleration;
     glm::vec3 rotation;
     glm::vec3 scale;
+
+    // For bullets
+    glm::vec3 trajectory;
     
     float speed;
 
@@ -41,7 +45,7 @@ public:
     Entity();
     
     bool CheckCollision(Entity* other);
-    void Update(float deltaTime, Entity* player, Entity* objects, int objectCount);
+    void Update(float deltaTime, Entity* player, std::vector<Entity*> objects);
     void Render(ShaderProgram *program);
     void DrawBillboard(ShaderProgram* program);
 };

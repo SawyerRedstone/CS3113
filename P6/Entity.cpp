@@ -28,7 +28,7 @@ bool Entity::CheckCollision(Entity* other) {
     return false;
 }
 
-void Entity::Update(float deltaTime, Entity* player, Entity* objects, int objectCount) {
+void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*> objects) {
     glm::vec3 previousPosition = position;
 
     if (billboard) {
@@ -36,19 +36,23 @@ void Entity::Update(float deltaTime, Entity* player, Entity* objects, int object
         float directionZ = position.z - player->position.z;
         rotation.y = glm::degrees(atan2f(directionX, directionZ));
 
-        velocity.z = cos(glm::radians(rotation.y)) * -1.0f;
-        velocity.x = sin(glm::radians(rotation.y)) * -1.0f;
+        //velocity.z = cos(glm::radians(rotation.y)) * -1.0f;
+        //velocity.x = sin(glm::radians(rotation.y)) * -1.0f;
+    }
+    if (entityType == BULLET) {
+        velocity.z = cos(glm::radians(trajectory.y)) * 1.0f;
+        velocity.x = sin(glm::radians(trajectory.y)) * 1.0f;
     }
 
     velocity += acceleration * deltaTime;
     position += velocity * deltaTime;
 
-    if (entityType == PLAYER) {
-        for (int i = 0; i < objectCount; i++) {
+    if (entityType == PLAYER || entityType == ENEMY) {
+        for (Entity* object: objects) {
             // Ignore collisions with the floor
-            if (objects[i].entityType == FLOOR) continue;
+            if (object->entityType == FLOOR) continue;
 
-            if (CheckCollision(&objects[i])) {
+            if (CheckCollision(object)) {
                 position = previousPosition;
                 break;
             }
