@@ -15,7 +15,7 @@
 #include "Mesh.h"
 #include <vector>
 
-enum EntityType { PLAYER, ENEMY, CUBE, FLOOR, CRATE, BULLET };
+enum EntityType { PLAYER, ENEMY, CUBE, FLOOR, CRATE, BULLET, COIN };
 
 class Entity {
 public:
@@ -28,6 +28,7 @@ public:
     glm::vec3 scale;
     bool isActive = true;
     int lives = 3;
+    int remainingCoins = 30;
 
     // For bullets
     glm::vec3 trajectory;
@@ -47,7 +48,7 @@ public:
     Entity();
     
     bool CheckCollision(Entity* other);
-    void Update(float deltaTime, Entity* player, std::vector<Entity*> objects, std::vector<Entity*> bullets);
+    void Update(float deltaTime, Entity* player, std::vector<Entity*>& objects, std::vector<Entity*>& bullets, std::vector<Entity*>& enemies);
     void Render(ShaderProgram *program);
     void DrawBillboard(ShaderProgram* program);
 };

@@ -28,7 +28,7 @@ bool Entity::CheckCollision(Entity* other) {
     return false;
 }
 
-void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*> objects, std::vector<Entity*> bullets) {
+void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*>& objects, std::vector<Entity*>& bullets, std::vector<Entity*>& enemies) {
     glm::vec3 previousPosition = position;
 
     if (billboard) {
@@ -52,7 +52,7 @@ void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*> object
             // Ignore collisions with the floor
             if (object->entityType == FLOOR) continue;
 
-            if (CheckCollision(object)) {
+            if (entityType == ENEMY && CheckCollision(object)) {
                 position = previousPosition;
                 break;
             }
@@ -63,17 +63,30 @@ void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*> object
         velocity.x = sin(glm::radians(rotation.y)) * -1.0f;
         for (Entity* bullet : bullets) {
             if (CheckCollision(bullet)) {
+                position = glm::vec3(rand() % 50 - 25, 0.5, rand() % 50 - 25);
                 isActive = false;
+                //// Make new enemy
+                //Entity* enemy = new Entity();
+                //enemy->textureID = textureID;
+                //enemy->mesh = mesh;
+                //enemy->position = glm::vec3(rand() % 50 - 25, 0.5, rand() % 50 - 25);
+                //enemy->scale = glm::vec3(0.02, 0.02, 0.02);
+                //enemy->entityType = ENEMY;
+                //enemies.push_back(enemy);
             }
         }
         if (CheckCollision(player)) {
             player->lives -= 1;
-            isActive = false;
+            position = glm::vec3(rand() % 50 - 25, 0.5, rand() % 50 - 25);
         }
     }
-    //if (entityType == PLAYER) {
-    //    for (en)
-    //}
+
+    if (entityType == COIN) {
+        if (CheckCollision(player)) {
+            isActive = false;
+            player->remainingCoins -= 1;
+        }
+    }
     
     if (entityType == CUBE) { 
         rotation.y += 45 * deltaTime;

@@ -43,7 +43,7 @@ void SwitchToScene(Scene* scene) {
 
 void Initialize() {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
-    displayWindow = SDL_CreateWindow("Aim and Fire!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_OPENGL);
+    displayWindow = SDL_CreateWindow("STAR SHOOTER!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
     
@@ -79,7 +79,12 @@ void Initialize() {
 
     sceneList[0] = new MenuScreen();
     sceneList[1] = new Level1();
-    SwitchToScene(sceneList[1]);
+    SwitchToScene(sceneList[0]);
+
+    SDL_InitSubSystem(SDL_INIT_AUDIO);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+    state.music = Mix_LoadMUS("space.mp3");
+    Mix_PlayMusic(state.music, -1);
 }
 
 void ProcessInput() {
@@ -97,9 +102,10 @@ void ProcessInput() {
                     if (currentScene == sceneList[0]) { currentScene->state.nextScene = 1; }
                     break;
                     case SDLK_SPACE:
-                        // Some sort of action - Maybe shoot?
+                        // Shoot
                         if (currentScene->state.shooting == false) { 
                             currentScene->state.shooting = true;
+                            Mix_PlayChannel(-1, Mix_LoadWAV("shoot.wav"), 0);
                         }
                         break;
                         
@@ -164,17 +170,27 @@ void Render() {
     program.SetProjectionMatrix(projectionMatrix);
     program.SetViewMatrix(viewMatrix);
     currentScene->Render(&program);
-    
+
     // state.player->Render(&program);
 
     program.SetProjectionMatrix(uiProjectionMatrix);
     program.SetViewMatrix(uiViewMatrix);
-    
-    Util::DrawText(&program, fontTextureID, "Lives: 3", 0.5, -0.3f, glm::vec3(-6, 3.2, 0));
+    if (currentScene == sceneList[0]) {
+        Util::DrawText(&program, fontTextureID, "STAR SHOOTER!", 0.7, -0.25f, glm::vec3(-2, 3.2, 0));
+        Util::DrawText(&program, fontTextureID, "Collect all diamonds.", 0.5, -0.25f, glm::vec3(-6, 2.2, 0));
+        Util::DrawText(&program, fontTextureID, "Don't touch UFOs!", 0.5, -0.25f, glm::vec3(-6, 1.2, 0));
+        Util::DrawText(&program, fontTextureID, "Press SPACE to shoot, A S D W to move.", 0.5, -0.25f, glm::vec3(-6, 0.2, 0));
+        Util::DrawText(&program, fontTextureID, "Press ENTER to play!", 0.7, -0.30f, glm::vec3(-6, -1.2, 0));
+    }
+    if (currentScene == sceneList[1]) { 
+        // std::string lives = "Lives: " + std::to_string(currentScene->state.player->lives);
+        std::string diamonds = "Diamonds Remaining: " + std::to_string(currentScene->state.player->remainingCoins);
+        Util::DrawText(&program, fontTextureID, diamonds, 0.5, -0.25f, glm::vec3(-6, 3.2, 0));
 
-    for (int i = 0; i < 3; i++) {
-        // These icons are small, so just move 0.5 to the right for each one.
-        Util::DrawIcon(&program, heartTextureID, glm::vec3(5 + (i * 0.5f), 3.2, 0));
+        for (int i = 0; i < currentScene->state.player->lives; i++) {
+            // These icons are small, so just move 0.5 to the right for each one.
+            Util::DrawIcon(&program, heartTextureID, glm::vec3(5 + (i * 0.5f), 3.2, 0));
+        }
     }
     SDL_GL_SwapWindow(displayWindow);
 }
