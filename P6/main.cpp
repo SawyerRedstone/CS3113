@@ -119,11 +119,11 @@ void ProcessInput() {
     const Uint8* keys = SDL_GetKeyboardState(NULL);
 
     if (keys[SDL_SCANCODE_A]) {
-        //state.player->rotation.y += 1.0f;     // Professor Carmine version
+        // state.player->rotation.y += 1.0f;     // Professor Carmine version
         currentScene->state.player->rotation.y += 0.2f;
     }
     else if (keys[SDL_SCANCODE_D]) {
-        //state.player->rotation.y -= 1.0f;
+        // state.player->rotation.y -= 1.0f;
         currentScene->state.player->rotation.y -= 0.2f;
     }
     currentScene->state.player->velocity.x = 0;
@@ -155,14 +155,15 @@ void Update() {
     }
     
     while (deltaTime >= FIXED_TIMESTEP) {
+        //currentScene->state.player->rotation.y *= deltaTime;
         currentScene->Update(FIXED_TIMESTEP);
         deltaTime -= FIXED_TIMESTEP;
     }
     accumulator = deltaTime;
 
     viewMatrix = glm::mat4(1.0f);
-    viewMatrix = glm::rotate(viewMatrix,
-        glm::radians(currentScene->state.player->rotation.y), glm::vec3(0, -1.0f, 0));
+    // currentScene->state.player->rotation.y *= deltaTime;
+    viewMatrix = glm::rotate(viewMatrix, glm::radians(currentScene->state.player->rotation.y), glm::vec3(0, -1.0f, 0));
     viewMatrix = glm::translate(viewMatrix, -currentScene->state.player->position);
 }
 

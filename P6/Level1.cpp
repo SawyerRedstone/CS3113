@@ -22,18 +22,6 @@ void Level1::Initialize() {
     floor->entityType = FLOOR;
     state.objects.push_back(floor);
 
-    //GLuint crateTextureID = Util::LoadTexture("crate1_diffuse.png");
-    //Mesh* crateMesh = new Mesh();
-    //crateMesh->LoadOBJ("cube.obj", 1);
-    //for (int i = 0; i < 20; i++) {
-    //    Entity* crate = new Entity();
-    //    crate->textureID = crateTextureID;
-    //    crate->mesh = crateMesh;
-    //    crate->position = glm::vec3(rand() % 20 - 10, 0.5, rand() % 20 - 10);
-    //    crate->entityType = CRATE;
-    //    state.objects.push_back(crate);
-    //}
-
     GLuint coinTextureID = Util::LoadTexture("coin.png");
 
     GLuint UFOTextureID = Util::LoadTexture("UFO.png");
