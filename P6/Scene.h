@@ -20,7 +20,6 @@ struct GameState {
     Entity* player;
     std::vector<Entity*> enemies;
     std::vector<Entity*> objects;
-    //Entity* weapon;
     std::vector<Entity*> bullets;
     bool shooting = false;
     std::vector<Entity*> coins;

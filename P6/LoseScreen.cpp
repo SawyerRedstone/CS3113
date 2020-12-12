@@ -1,7 +1,6 @@
-#include "MenuScreen.h"
+#include "LoseScreen.h"
 
-
-void MenuScreen::Initialize() { 
+void LoseScreen::Initialize() {
     state.player = new Entity();
     state.player->entityType = PLAYER;
     state.player->position = glm::vec3(0, 0.75f, 0);
@@ -9,6 +8,6 @@ void MenuScreen::Initialize() {
     state.player->speed = 1.0f;
 }
 
-void MenuScreen::Update(float deltaTime) { }
+void LoseScreen::Update(float deltaTime) { }
 
-void MenuScreen::Render(ShaderProgram* shaderProgram) { }
+void LoseScreen::Render(ShaderProgram* shaderProgram) { }

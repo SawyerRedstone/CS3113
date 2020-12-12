@@ -17,7 +17,8 @@
 #include "Scene.h"
 #include "MenuScreen.h"
 #include "Level1.h"
-//#include "WinScreen.h"
+#include "WinScreen.h"
+#include "LoseScreen.h"
 #include "Entity.h"
 #include "Util.h"
 
@@ -33,7 +34,7 @@ GLuint heartTextureID;
 
 GameState state;
 Scene* currentScene;
-Scene* sceneList[2];
+Scene* sceneList[4];
 
 // Switch between game scenes
 void SwitchToScene(Scene* scene) {
@@ -58,7 +59,7 @@ void Initialize() {
     uiViewMatrix = glm::mat4(1.0);
     uiProjectionMatrix = glm::ortho(-6.4f, 6.4f, -3.6f, 3.6f, -1.0f, 1.0f);
     fontTextureID = Util::LoadTexture("font1.png");
-    heartTextureID = Util::LoadTexture("platformPack_item017.png");
+    heartTextureID = Util::LoadTexture("heart.png");
 
     viewMatrix = glm::mat4(1.0f);
     modelMatrix = glm::mat4(1.0f);
@@ -79,6 +80,8 @@ void Initialize() {
 
     sceneList[0] = new MenuScreen();
     sceneList[1] = new Level1();
+    sceneList[2] = new WinScreen();
+    sceneList[3] = new LoseScreen();
     SwitchToScene(sceneList[0]);
 
     SDL_InitSubSystem(SDL_INIT_AUDIO);
@@ -100,6 +103,7 @@ void ProcessInput() {
                 switch (event.key.keysym.sym) {
                 case SDLK_RETURN:
                     if (currentScene == sceneList[0]) { currentScene->state.nextScene = 1; }
+                    // if (currentScene == sceneList[2] || currentScene == sceneList[3]) { currentScene->state.nextScene = 0; }
                     break;
                     case SDLK_SPACE:
                         // Shoot
@@ -107,8 +111,7 @@ void ProcessInput() {
                             currentScene->state.shooting = true;
                             Mix_PlayChannel(-1, Mix_LoadWAV("shoot.wav"), 0);
                         }
-                        break;
-                        
+                        break; 
                 }
                 break;
         }
@@ -171,8 +174,6 @@ void Render() {
     program.SetViewMatrix(viewMatrix);
     currentScene->Render(&program);
 
-    // state.player->Render(&program);
-
     program.SetProjectionMatrix(uiProjectionMatrix);
     program.SetViewMatrix(uiViewMatrix);
     if (currentScene == sceneList[0]) {
@@ -191,6 +192,14 @@ void Render() {
             // These icons are small, so just move 0.5 to the right for each one.
             Util::DrawIcon(&program, heartTextureID, glm::vec3(5 + (i * 0.5f), 3.2, 0));
         }
+    }
+    if (currentScene == sceneList[2]) {
+        Util::DrawText(&program, fontTextureID, "You win!", 0.7, -0.25f, glm::vec3(-2, 3.2, 0));
+        //Util::DrawText(&program, fontTextureID, "Press ENTER to play again!", 0.7, -0.30f, glm::vec3(-5, 2.2, 0));
+    }
+    if (currentScene == sceneList[3]) {
+        Util::DrawText(&program, fontTextureID, "Unfortunately, you lost.", 0.7, -0.25f, glm::vec3(-5.25, 0.2, 0));
+        //Util::DrawText(&program, fontTextureID, "Press ENTER to try again!", 0.7, -0.30f, glm::vec3(-5, -1.2, 0));
     }
     SDL_GL_SwapWindow(displayWindow);
 }

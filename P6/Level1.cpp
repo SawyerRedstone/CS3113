@@ -8,7 +8,7 @@ void Level1::Initialize() {
     state.player->acceleration = glm::vec3(0, 0, 0);
     state.player->speed = 1.0f;
         
-    GLuint floorTextureID = Util::LoadTexture("floor.jpg");
+    GLuint floorTextureID = Util::LoadTexture("moon2.jpg");
     Mesh* cubeMesh = new Mesh;
     cubeMesh->LoadOBJ("cube.obj", 50);
     
@@ -34,7 +34,6 @@ void Level1::Initialize() {
     //    state.objects.push_back(crate);
     //}
 
-    Mesh* coinMesh = new Mesh;
     GLuint coinTextureID = Util::LoadTexture("coin.png");
 
     GLuint UFOTextureID = Util::LoadTexture("UFO.png");
@@ -53,7 +52,6 @@ void Level1::Initialize() {
 
         Entity* coin = new Entity();
         coin->textureID = coinTextureID;
-        coin->mesh = coinMesh;
         coin->position = position;
         coin->billboard = true;
         coin->entityType = COIN;
@@ -87,6 +85,12 @@ void Level1::Update(float deltaTime) {
     }
     for (Entity* bullet : state.bullets) {
         bullet->Update(deltaTime, state.player, state.objects, state.bullets, state.enemies);
+    }
+    if (state.player->remainingCoins == 0) {
+        state.nextScene = 2;
+    }
+    if (state.player->lives == 0) {
+        state.nextScene = 3;
     }
 }
 

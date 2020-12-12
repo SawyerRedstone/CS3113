@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include <SDL_mixer.h>
 
 Entity::Entity()
 {
@@ -35,13 +36,18 @@ void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*>& objec
         float directionX = position.x - player->position.x;
         float directionZ = position.z - player->position.z;
         rotation.y = glm::degrees(atan2f(directionX, directionZ));
-
-        //velocity.z = cos(glm::radians(rotation.y)) * -1.0f;
-        //velocity.x = sin(glm::radians(rotation.y)) * -1.0f;
     }
     if (entityType == BULLET) {
-        velocity.z = cos(glm::radians(trajectory.y)) * -1.0f;
-        velocity.x = sin(glm::radians(trajectory.y)) * -1.0f;
+        velocity.z = cos(glm::radians(trajectory.y)) * -2.0f;
+        velocity.x = sin(glm::radians(trajectory.y)) * -2.0f;
+    }
+    if (entityType == BALLOON) {
+        if (position.y <= 0.5) {
+            velocity.y = 0.2;
+        }
+        if (position.y >= 1.5) {
+            velocity.y = -0.2;
+        }
     }
 
     velocity += acceleration * deltaTime;
@@ -63,19 +69,15 @@ void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*>& objec
         velocity.x = sin(glm::radians(rotation.y)) * -1.0f;
         for (Entity* bullet : bullets) {
             if (CheckCollision(bullet)) {
+                //Mix_PlayChannel(-1, Mix_LoadWAV("hitEnemy2.wav"), 0);
+                Mix_PlayChannel(-1, Mix_LoadWAV("killed.wav"), 0);
                 position = glm::vec3(rand() % 50 - 25, 0.5, rand() % 50 - 25);
                 isActive = false;
-                //// Make new enemy
-                //Entity* enemy = new Entity();
-                //enemy->textureID = textureID;
-                //enemy->mesh = mesh;
-                //enemy->position = glm::vec3(rand() % 50 - 25, 0.5, rand() % 50 - 25);
-                //enemy->scale = glm::vec3(0.02, 0.02, 0.02);
-                //enemy->entityType = ENEMY;
-                //enemies.push_back(enemy);
             }
         }
         if (CheckCollision(player)) {
+            //Mix_PlayChannel(-1, Mix_LoadWAV("killed.wav"), 0);
+            Mix_PlayChannel(-1, Mix_LoadWAV("hitEnemy2.wav"), 0);
             player->lives -= 1;
             position = glm::vec3(rand() % 50 - 25, 0.5, rand() % 50 - 25);
         }
@@ -83,14 +85,10 @@ void Entity::Update(float deltaTime, Entity* player, std::vector<Entity*>& objec
 
     if (entityType == COIN) {
         if (CheckCollision(player)) {
+            Mix_PlayChannel(-1, Mix_LoadWAV("coin.wav"), 0);
             isActive = false;
             player->remainingCoins -= 1;
         }
-    }
-    
-    if (entityType == CUBE) { 
-        rotation.y += 45 * deltaTime;
-        rotation.z += 45 * deltaTime;
     }
     else if (entityType == ENEMY) {
         rotation.y += 30 * deltaTime;

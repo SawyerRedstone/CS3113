@@ -15,7 +15,7 @@
 #include "Mesh.h"
 #include <vector>
 
-enum EntityType { PLAYER, ENEMY, CUBE, FLOOR, CRATE, BULLET, COIN };
+enum EntityType { PLAYER, ENEMY, FLOOR, BULLET, COIN, BALLOON };
 
 class Entity {
 public:
